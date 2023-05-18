@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const path = require('path');
-const noteData = require('./db/db.json')
+const noteData = require('./db/db')
 const uuid = require('./helpers/uuid');
 const fs = require('fs');
 
@@ -17,11 +17,13 @@ app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
     );
 
-app.get('/notes', (req, res) =>
+app.get('/notes.html', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-app.get('/api/notes', (req, res) => res.json(noteData));
+app.get('/api/notes', (req, res) => 
+res.json(noteData)
+);
 
 
 // POST request to add a note
