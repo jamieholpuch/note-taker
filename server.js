@@ -8,21 +8,25 @@ const uuid = require('./helpers/uuid');
 const fs = require('fs');
 
 //import middleware
-app.use(express.static('public'));
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static('public'));
 
 //GET routes
 app.get('*', (req, res) => 
     res.sendFile(path.join(__dirname, '/public/index.html'))
     );
 
-app.get('/notes.html', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
+
+app.get('/notes', (req, res) => {
+ res.sendFile(path.join(__dirname, '/public/notes.html'))
+ // Log our request to the terminal
+ console.info(`${req.method} request received to get reviews`)
+});
 
 app.get('/api/notes', (req, res) => 
-res.json(noteData)
+  res.json(noteData)
 );
 
 
