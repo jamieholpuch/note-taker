@@ -14,20 +14,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //GET routes
-app.get('*', (req, res) => 
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-    );
-
-
 app.get('/notes', (req, res) => {
  res.sendFile(path.join(__dirname, '/public/notes.html'))
  // Log our request to the terminal
- console.info(`${req.method} request received to get reviews`)
+ console.info(`${req.method} request received to get notes`)
 });
 
 app.get('/api/notes', (req, res) => 
   res.json(noteData)
 );
+
+app.get('*', (req, res) => 
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+    );
 
 
 // POST request to add a note
