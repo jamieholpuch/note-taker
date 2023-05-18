@@ -1,6 +1,18 @@
 [
     {
-        "title":"Test Title",
-        "text":"Test text"
+        "title": "Test Title",
+        "text": "Test text"
+    },
+    {
+        "title": "jamie Title",
+        "text": "Test text",
+        "upvotes": 85,
+        "review_id": "7bbf"
+    },
+    {
+        "title": "jamie Title",
+        "text": "Test text",
+        "upvotes": 11,
+        "review_id": "9a79"
     }
 ]
