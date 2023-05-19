@@ -19,7 +19,7 @@ app.get('/api/notes', (req, res) =>
     if (err) {
       console.error(err)
     } else {
-      res.json(noteData)
+      res.json(data)
   }})
   );
 
