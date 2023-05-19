@@ -15,12 +15,13 @@ app.use(express.static('public'));
 
 //GET routes
 app.get('/api/notes', (req, res) => 
-  fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err)
-    } else {
-      res.json(data)
-  }})
+  res.json(data)
+  // fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
+  //   if (err) {
+  //     console.error(err)
+  //   } else {
+  //     res.json(data)
+  // }})
   );
 
 
