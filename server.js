@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 //GET routes
 app.get('/api/notes', (req, res) => 
-  res.json(data)
+  res.json(noteData)
   // fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
   //   if (err) {
   //     console.error(err)
