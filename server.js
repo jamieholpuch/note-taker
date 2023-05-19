@@ -35,21 +35,33 @@ app.get('*', (req, res) =>
     );
 
 // POST request to add a note
-app.post('/api/notes', (req, res) => {
-  // Log that a POST request was received
-  console.info(`${req.method} request received to add a note`);
-
-  // Destructuring assignment for the items in req.body
+app.post("/api/notes", (req, res) => {
+  console.log(req.method);
   const { title, text } = req.body;
-
-  // If all the required properties are present
+  //desconstruct the req.body to get the title and text from the front end
   if (title && text) {
-    // Variable for the object we will save
     const newNote = {
       title,
       text,
-      id: uuid()
-    };    
+      id: uuid(),//this function is used to assign a random id to the id document
+    };
+
+
+// app.post('/api/notes', (req, res) => {
+//   // Log that a POST request was received
+//   console.info(`${req.method} request received to add a note`);
+
+//   // Destructuring assignment for the items in req.body
+//   const { title, text } = req.body;
+
+//   // If all the required properties are present
+//   if (title && text) {
+//     // Variable for the object we will save
+//     const newNote = {
+//       title,
+//       text,
+//       id: uuid()
+//     };    
 
     // Write the string to a file
     fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
