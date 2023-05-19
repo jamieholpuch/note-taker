@@ -14,16 +14,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //GET routes
-app.get('/api/notes', (req, res) => 
-  res.json(noteData)
-  // fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
-  //   if (err) {
-  //     console.error(err)
-  //   } else {
-  //     res.json(data)
-  // }})
+app.get('/api/notes', (req, res) =>
+  fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err)
+    } else {
+      res.send(JSON.parse(data))
+  }})
   );
-
 
 app.get('/notes', (req, res) => {
  res.sendFile(path.join(__dirname, '/public/notes.html'))
