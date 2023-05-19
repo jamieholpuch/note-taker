@@ -24,6 +24,10 @@ app.get('/api/notes', (req, res) =>
   res.json(noteData)
 );
 
+app.get('*', (req, res) => 
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+    );
+
 // POST request to add a note
 app.post('/api/notes', (req, res) => {
   // Log that a POST request was received
@@ -53,7 +57,7 @@ app.post('/api/notes', (req, res) => {
           JSON.stringify(parsedNotes, null, 4),
           (writeErr) =>
             writeErr
-             ?console.error(writeErr)
+             ? console.error(writeErr)
              : console.info("Successfully updated notes!")
         );
       };
@@ -71,9 +75,7 @@ app.post('/api/notes', (req, res) => {
   }
 });
 
-app.get('*', (req, res) => 
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-    );
+
 
 app.listen(PORT, () =>
   console.log(`Serving static asset routes on port ${PORT}!`)
