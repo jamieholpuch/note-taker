@@ -14,15 +14,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //GET routes
+app.get('/api/notes', (req, res) => 
+  fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err)
+    } else {
+      res.json(noteData)
+  }})
+  );
+
+
 app.get('/notes', (req, res) => {
  res.sendFile(path.join(__dirname, '/public/notes.html'))
  // Log our request to the terminal
  console.info(`${req.method} request received to get notes`)
 });
-
-app.get('/api/notes', (req, res) => 
-  res.json(noteData)
-);
 
 app.get('*', (req, res) => 
     res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -52,9 +58,10 @@ app.post('/api/notes', (req, res) => {
       } else {
         const parsedNotes = JSON.parse(data);
         parsedNotes.push(newNote);
+        
         fs.writeFile(
           './db/db.json',
-          JSON.stringify(parsedNotes, null, 4),
+          JSON.stringify(parsedNotes),
           (writeErr) =>
             writeErr
              ? console.error(writeErr)
